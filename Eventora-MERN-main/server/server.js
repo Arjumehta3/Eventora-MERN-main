@@ -1,10 +1,11 @@
+const dns = require('dns');
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
 dotenv.config();
-
+dns.setServers(['1.1.1.1', '8.8.8.8']);
 const authRoutes = require('./routes/auth');
 const eventRoutes = require('./routes/events');
 const bookingRoutes = require('./routes/bookings');
@@ -12,7 +13,9 @@ const bookingRoutes = require('./routes/bookings');
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: process.env.CLIENT_URL || 'http://localhost:5173'
+}));
 app.use(express.json());
 
 // Routes

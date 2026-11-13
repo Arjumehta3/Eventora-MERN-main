@@ -19,6 +19,9 @@ app.use(cors({
 app.use(express.json());
 
 // Routes
+app.get('/', (req, res) => {
+    res.status(200).send('Eventora Backend is Running!');
+});
 app.use('/api/auth', authRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/bookings', bookingRoutes);
